@@ -156,8 +156,8 @@ class Calculator extends Component {
         return (
             <div className="">
                 <main className="">
-                    <p>curr num : {this.state.currNum}</p>
-                    <p> total : {this.state.total}</p>
+                    {/* <p>curr num : {this.state.currNum}</p>
+                    <p> total : {this.state.total}</p> */}
                     {/* <p> memory: {this.state.memory}</p> */}
                     {/* <p> operation: {this.state.operation}</p> */}
 
