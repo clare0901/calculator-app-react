@@ -1,0 +1,61 @@
+.screen{
+  border: 1px solid white;
+  background-color: black; 
+  margin: 80px auto 0 auto;
+  width: 400px;
+  height: 100px;
+  position: relative; 
+}
+.value{
+  color: #d63c6b;;
+  position:absolute;
+  bottom:0;
+  right: 0;
+  padding: 0 0 20px 0;
+  font-size: 25px;
+  transform: translate(-50px);
+}
+.calculator-body{
+  width: 400px;
+  height: 400px;
+  margin: 0px auto ;
+  display: flex;  
+}
+
+button {
+  outline: none;
+  border: 0.5px solid black;
+  font-size: 1.5rem;
+  color: #5cc8ff;
+  cursor: pointer;
+}
+
+.numbers {
+  width: 315px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.numbers button, .equations button {
+  background-color: #292f36;  
+}
+
+.numbers button {
+  width: 105px;
+  height: 100px;
+  transition: all .5s ease-out;
+}
+
+.equations {
+  width: 85px;
+}
+
+.equations button {
+  width: 85px;
+  height: 80px;
+  font-size: 22px;
+  color: #d63c6b;
+  transition: all .5s ease-out;
+}
+
