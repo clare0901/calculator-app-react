@@ -1,34 +1,39 @@
+// mutiple expressions don't work
+
 import React, { Component } from "react";
 import Numbers from "../components/Numbers";
 import Screen from "../components/Screen";
 import Equations from "../components/Equations";
 import "../App.css";
+// import { create, all } from 'mathjs'
 
 class Calculator extends Component {
+    
     constructor() {
         super();
         this.state = {
-            currNum: "",
+            screen_value:"",
+            currNum: '',
             total: 0,
-            oldNum: "",
+            flag:0,
             memory: "",
             operation: ""
         };
 
     }
-
+    
     number(e) {
         let name = e.target.className;
 
         if (name === "decimal") {
             name = ".";
         }
+        
+        this.setState((prevState)=>({
+            screen_value: prevState.screen_value + name
+        }));
+
         this.setState({currNum:name});
-
-        // this.setState((prevState)=>({
-        //     currNum: prevState.currNum + name
-        // }));
-
 
         if (this.state.total !== 0) {
             this.setState({
@@ -43,10 +48,12 @@ class Calculator extends Component {
 
     delete() {
         this.setState({
+            screen_value:"",
             total: "",
             currNum: "",
             memory: "",
-            operation: ''
+            operation: '',
+            flag:0
         });
     };
 
@@ -73,54 +80,87 @@ class Calculator extends Component {
 
             // operations
             if (name === "add") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '+'
-                // }));
+                if(this.state.flag === 1){
+                    this.setState((prevState)=>({
+                        screen_value: prevState.total + '+'
+                    }));
+                }
+                else{
+                    this.setState((prevState)=>({
+                        screen_value: prevState.screen_value + '+'
+                    }));
+                }
         
                 this.setState({
                     currNum:'+',
                     memory: this.state.total,
                     total: '',
                     operation: '+',
+                    flag:0
                 });
             }
 
             if (name === "subtract") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '-'
-                // }));
+                if(this.state.flag===1){
+                    this.setState((prevState)=>({
+                        screen_value: prevState.total + '-'
+                    }));
+                }
+                else{
+                    this.setState((prevState)=>({
+                        screen_value: prevState.screen_value + '-'
+                    }));
+                }
     
                 this.setState({
                     currNum:'-',
                     memory: this.state.total,
                     total: '',
                     operation: '-',
+                    flag:0
                 });
             }
 
             if (name === "multiply") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '*'
-                // }));
+                if(this.state.flag===1){
+                    this.setState((prevState)=>({
+                        screen_value: prevState.total + '*'
+                    }));
+                }
+                else{
+                    this.setState((prevState)=>({
+                        screen_value: prevState.screen_value + '*'
+                    }));
+                }
         
                 this.setState({
                     currNum:'*',
                     memory: this.state.total,
                     total: '',
                     operation: '*',
+                    flag:0
                 });
             }
 
             if (name === "divide") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '/'
-                // }));
+                // flag = 1 when the total value is showing up on the screen
+                if(this.state.flag === 1){
+                    this.setState((prevState)=>({
+                        screen_value: prevState.total + '/',          
+                    }));
+                }
+                else{
+                    this.setState((prevState)=>({
+                        screen_value: prevState.screen_value + '/'
+                    }));
+                }
         
                 this.setState({
                     currNum:'/',
                     memory: this.state.total,
                     total: '',
                     operation: '/',
+                    flag:0
                     
                 });
             }
@@ -128,7 +168,7 @@ class Calculator extends Component {
 
             // ans
             if (name === "equals") {
-
+                this.setState({flag:1})
                 const operation = this.state.operation;
                 let memory = parseFloat(this.state.memory);
                 let total = parseFloat(this.state.total);
@@ -152,16 +192,11 @@ class Calculator extends Component {
     }
 
     render() {
-        // console.log("rendered")
+        // console.log("total", this.state.total)
         return (
             <div className="">
                 <main className="">
-                    <p>curr num : {this.state.currNum}</p>
-                    <p> total : {this.state.total}</p>
-                    {/* <p> memory: {this.state.memory}</p> */}
-                    {/* <p> operation: {this.state.operation}</p> */}
-
-                    <Screen number={this.state.total} />
+                    <Screen number={ (this.state.flag) ? this.state.total : this.state.screen_value} />
 
                     <div className="calculator-body">
                         <Numbers />
