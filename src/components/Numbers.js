@@ -3,7 +3,6 @@ import Button from './Button'
 import '../App.css';
 
 function Numbers(){
-    // console.log(props)
     const buttonData = [
         {text: "7", class: "7"},
         {text: "8", class: "8"},

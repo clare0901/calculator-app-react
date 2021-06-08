@@ -25,11 +25,6 @@ class Calculator extends Component {
         }
         this.setState({currNum:name});
 
-        // this.setState((prevState)=>({
-        //     currNum: prevState.currNum + name
-        // }));
-
-
         if (this.state.total !== 0) {
             this.setState({
                 total: this.state.total + this.state.currNum,
@@ -73,10 +68,6 @@ class Calculator extends Component {
 
             // operations
             if (name === "add") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '+'
-                // }));
-        
                 this.setState({
                     currNum:'+',
                     memory: this.state.total,
@@ -86,10 +77,6 @@ class Calculator extends Component {
             }
 
             if (name === "subtract") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '-'
-                // }));
-    
                 this.setState({
                     currNum:'-',
                     memory: this.state.total,
@@ -99,10 +86,6 @@ class Calculator extends Component {
             }
 
             if (name === "multiply") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '*'
-                // }));
-        
                 this.setState({
                     currNum:'*',
                     memory: this.state.total,
@@ -112,10 +95,6 @@ class Calculator extends Component {
             }
 
             if (name === "divide") {
-                // this.setState((prevState)=>({
-                //     currNum: prevState.currNum + '/'
-                // }));
-        
                 this.setState({
                     currNum:'/',
                     memory: this.state.total,
@@ -156,11 +135,6 @@ class Calculator extends Component {
         return (
             <div className="">
                 <main className="">
-                    {/* <p>curr num : {this.state.currNum}</p>
-                    <p> total : {this.state.total}</p> */}
-                    {/* <p> memory: {this.state.memory}</p> */}
-                    {/* <p> operation: {this.state.operation}</p> */}
-
                     <Screen number={this.state.total} />
 
                     <div className="calculator-body">
